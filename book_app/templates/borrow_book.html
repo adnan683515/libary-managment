@@ -1,0 +1,67 @@
+{% extends "base.html" %} 
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+
+<div class="row text-center m-5">
+  <div class='col-6'>
+    {% if profile.image %}
+    <img class="rounded-circle" src="{{profile.image.url}}" style="width: 40%; height: 90%;" alt="picture">
+    {% else %}
+    <p><b>You can Added your Picture</b></p>
+    {% endif %}
+  </div>
+
+  <div class='col-6'>
+    <div class="card text-bg-dark mb-2" style="width: 50%;">
+      <div class="card-header"><h3><b>User Information</b></h3></div>
+      <div class="card-body">
+        <p class="card-text">Username: <b>{{request.user.first_name}} {{request.user.last_name}}</b></p>
+        <p  class="card-text">Email: <b>{{request.user.email}}</b></p>
+        <p  class="card-text"><b>Total Books: {{borrow|length}}</b></p>
+        <p  class="card-text">Total Amount: <b>{{total_amount}} Tk</b></p>
+        <a href="#" class="btn btn-info">Pay Money</a>
+
+      </div>
+    </div>
+    
+
+
+  </div>
+</div>
+
+
+
+<table class="table table-bordered m-4 border border-warning-subtle ">
+  <thead>
+    <tr>
+      <th scope="col" class="background-color: #676b6e;">Book ID</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Price</th>
+      <th scope='col'>Date</th>
+      <th scope="col">Return Book</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in borrow  %}
+    <tr>
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.buy_book.title}}</td>
+      <td>{{item.buy_book.price}}</td>
+      <td>{{item.date}}</td>
+      <td><a href="{% url 'return_book' item.id %}" class='btn btn-warning'>Back</a></td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+
+
+
+
+
+{% endblock body %}
+
+

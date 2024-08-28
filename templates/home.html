@@ -1,0 +1,73 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+
+
+<div class="d-flex align-items-center " style="width: 90%; margin: auto" >
+  <div class="col-6">
+    <h3><b>Welcome to Libary</b></h3>
+    <p>
+      library, traditionally, collection of books used for reading or study, or the building or room in which such a collection is kept. The word derives from the Latin liber, “book,” whereas a Latinized Greek word, bibliotheca, is the origin of the word for library in German, Russian, and the Romance languages.
+    </p>
+  </div>
+
+  <div class="col-6">
+    <img src={% static "kagupic.avif" %} style="width: 80%; " alt="pic">
+  </div>
+</div>
+
+<br /><br />
+
+
+
+
+
+<div class='d-flex m-5 gap-5'>
+    <div>
+
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cetagory Of Books
+            </a>
+          
+            <ul class="dropdown-menu">
+             {% for cat in cetagory  %}
+           <a class="dropdown-item" href="{% url 'cetagory_book' cat.slug  %}">{{cat.cetagory_name}}</a>
+             
+             {% endfor %}
+           
+            </ul>
+          </div>
+
+    </div>
+
+    <div class='row gap-2'>
+        {% for item in all_book  %}
+    
+    <div class="card" style="width: 240px; height: 500px;">
+        <img src="{{item.image.url}}" style="height:45%;" class="card-img-top" alt="Picture">
+        <div class="card-body">
+          <h5 class="card-title"><b>Title: </b>{{item.title}}</h5>
+          <p class="card-text"><b>Description: </b>{{item.description|truncatechars:20}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Price: {{item.price}} Tk</li>
+          <li class="list-group-item">Quantity: {{item.quantity}}</li>
+        </ul>
+            
+
+          <a href="{% url 'details_book' item.id %}" class="btn btn-info" >view Details</a>
+
+      </div>
+    
+    
+    {% endfor %}
+    
+    </div>
+</div>
+
+
+
+{% endblock body %}
