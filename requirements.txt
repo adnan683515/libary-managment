@@ -7,7 +7,7 @@ django-environ
 pillow
 psycopg
 psycopg
-psycopg2-binar
+psycopg2-binary
 sqlpars
 typing_extensions
 tzdata
