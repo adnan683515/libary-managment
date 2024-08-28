@@ -4,9 +4,10 @@ dj-database-url
 Django
 django-crispy-forms
 django-environ
+pillow
 psycopg
-psycopg2
-psycopg2-binary
-sqlparse
+psycopg
+psycopg2-binar
+sqlpars
 typing_extensions
 tzdata
